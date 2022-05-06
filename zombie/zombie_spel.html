@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://koda.nu/simple.js">
+        
+        var zombies = [];
+
+    var i = 0;
+
+    while (i < 1)
+    {
+        zombies.push({x: 1050 , 
+                  y: random(totalHeight) , 
+                  speed: random(1,3)});
+
+        i++;
+    }
+
+    var mc = {x: 400, y: 70};
+    
+    function update()
+    {    
+        clearScreen();
+
+        var i = 0;
+
+        //picture(mouse.x, mouse.y, "")
+        picture(mc.x, mc.y, ".vscode\\img\\cat.png", 100, 80)
+
+        if (keyboard.w)
+            mc.y -= 4;
+        if (keyboard.a)
+            mc.x -= 4;
+        if (keyboard.s)
+            mc.y += 4;
+        if (keyboard.d)
+            mc.x += 4;
+
+        while (i < 1)
+        {
+            var zombie = zombies[i];
+            picture(zombie.x, zombie.y, ".vscode\\img\\zombie.png", 160, 200);
+
+            if (zombie.x < mc.x)
+                zombie.x += zombie.speed;
+            else
+                zombie.x -= zombie.speed;
+            
+            if (zombie.y < mc.y)
+                zombie.y += zombie.speed;
+            else
+                zombie.y -= zombie.speed;
+
+            if(distance (mouse.x, mouse.y, zombie.x, zombie.y) <= 100 && keyboard.space){
+                
+                rectangle(100, 100, 100, 100, "red");
+                console.log(zombies)
+                //zombies.splice(i, 1);
+                
+            }
+           
+            i++;
+        }
+    }
+
+    </script>
+</body>
+</html>
